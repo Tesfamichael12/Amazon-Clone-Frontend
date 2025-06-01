@@ -16,7 +16,10 @@ export function CartProvider({ children }) {
   } catch (e) {
     localCart = initialCartState.cart;
   }
-  const [state, dispatch] = useReducer(cartReducer, { cart: localCart });
+  const [state, dispatch] = useReducer(cartReducer, {
+    cart: localCart,
+    user: initialCartState.user,
+  });
 
   // Persist cart to localStorage on change
   useEffect(() => {

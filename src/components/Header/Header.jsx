@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import nav_logo from "../../assets/Images/nav_log.png";
 import usa_flag from "../../assets/Images/usa_flag.png";
 import { useCart } from "../DataProvider/DataProvider";
+import { auth } from "../../Utility/firebase";
+import { ACTIONS } from "../../Utility/actions";
 
 function Header() {
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
@@ -16,7 +18,8 @@ function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [headerState, setHeaderState] = useState("visible"); // 'visible', 'hidden', 'topFixed'
   const headerRef = useRef(null);
-  const { cart } = useCart();
+  const { cart, user, dispatch } = useCart();
+  console.log("Header Rendered - User:", user);
 
   useEffect(() => {
     const handleResize = () => {
@@ -81,6 +84,12 @@ function Header() {
     "Coupons",
     "Gift Ideas",
   ];
+
+  // Sign out handler
+  const handleSignOut = async () => {
+    await auth.signOut();
+    dispatch({ type: ACTIONS.SET_USER, payload: null });
+  };
 
   return (
     <header
@@ -161,13 +170,51 @@ function Header() {
               className={`${styles.accountIcon} ${styles.showOnMobile}`}
             />
             {isMobile ? (
-              <Link
-                to="/auth/signin"
-                className={`${styles.boldText} ${styles.signInMobile}`}
-              >
-                Sign In{" "}
-                <FiChevronDown className={styles.chevronIconMobileSignIn} />
-              </Link>
+              user ? (
+                <>
+                  <span className={styles.smallText}>
+                    Hello,{" "}
+                    {user.reloadUserInfo?.displayName ||
+                      user.displayName ||
+                      (user.email
+                        ? user.email.split("@")[0]
+                        : user.reloadUserInfo?.email?.split("@")[0])}
+                  </span>
+                  <span
+                    className={styles.boldText}
+                    onClick={handleSignOut}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Sign Out
+                  </span>
+                </>
+              ) : (
+                <Link
+                  to="/auth/signin"
+                  className={`${styles.boldText} ${styles.signInMobile}`}
+                >
+                  Sign In{" "}
+                  <FiChevronDown className={styles.chevronIconMobileSignIn} />
+                </Link>
+              )
+            ) : user ? (
+              <>
+                <span className={styles.smallText}>
+                  Hello,{" "}
+                  {user.reloadUserInfo?.displayName ||
+                    user.displayName ||
+                    (user.email
+                      ? user.email.split("@")[0]
+                      : user.reloadUserInfo?.email?.split("@")[0])}
+                </span>
+                <span
+                  className={styles.boldText}
+                  onClick={handleSignOut}
+                  style={{ cursor: "pointer" }}
+                >
+                  Sign Out
+                </span>
+              </>
             ) : (
               <>
                 <span className={styles.smallText}>Hello, sign in</span>
@@ -179,9 +226,27 @@ function Header() {
             )}
             {showAccountDropdown && (
               <div className={styles.dropdownMenu}>
-                <Link to="/auth/signin">Your Account</Link>
-                <Link to="/orders">Your Orders</Link>
-                <span>Sign Out</span>
+                {user ? (
+                  <>
+                    <span>
+                      Hello,{" "}
+                      {user.reloadUserInfo?.displayName ||
+                        user.displayName ||
+                        (user.email
+                          ? user.email.split("@")[0]
+                          : user.reloadUserInfo?.email?.split("@")[0])}
+                    </span>
+                    <Link to="/orders">Your Orders</Link>
+                    <span onClick={handleSignOut} style={{ cursor: "pointer" }}>
+                      Sign Out
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/auth/signin">Your Account</Link>
+                    <Link to="/orders">Your Orders</Link>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -249,7 +314,12 @@ function Header() {
           <div className={styles.mobileMenuHeader}>
             <FaUser className={styles.accountIcon} />
             <h3>
-              Hello, <Link to="/auth/signin">Sign In</Link>
+              Hello,{" "}
+              {user ? (
+                user.displayName || user.email
+              ) : (
+                <Link to="/auth/signin">Sign In</Link>
+              )}
             </h3>
           </div>
           <Link to="/" className={styles.navLink}>
@@ -269,7 +339,13 @@ function Header() {
           </div>
           <span className={styles.navLink}>Customer Service</span>
           <span className={styles.navLink}>Settings</span>
-          <span className={styles.navLink}>Sign Out</span>
+          <span
+            className={styles.navLink}
+            onClick={handleSignOut}
+            style={{ cursor: "pointer" }}
+          >
+            Sign Out
+          </span>
         </div>
       )}
     </header>

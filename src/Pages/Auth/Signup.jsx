@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import swal from "sweetalert";
 import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 import { useCart } from "../../components/DataProvider/DataProvider";
 import { ACTIONS } from "../../Utility/actions";
 
@@ -29,6 +30,8 @@ const Signup = () => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [bgLoaded, setBgLoaded] = useState(false);
   const navigate = useNavigate();
 
@@ -78,6 +81,7 @@ const Signup = () => {
       !password
     )
       return;
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         return updateProfile(userCredential.user, { displayName: name }).then(
@@ -99,10 +103,14 @@ const Signup = () => {
           icon: "error",
           buttons: "Ok",
         });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   const GoogleAuth = async () => {
+    setIsGoogleLoading(true);
     signInWithPopup(auth, provider)
       .then((userCredential) => {
         dispatch({
@@ -120,6 +128,9 @@ const Signup = () => {
           icon: "error",
           buttons: "Ok",
         });
+      })
+      .finally(() => {
+        setIsGoogleLoading(false);
       });
   };
 
@@ -191,18 +202,36 @@ const Signup = () => {
               {passwordError && (
                 <div className={styles.errorMessage}>{passwordError}</div>
               )}
-              <button onClick={RegisterUser} className={styles.signinBtn}>
-                Sign up
+              <button
+                onClick={RegisterUser}
+                className={styles.signinBtn}
+                disabled={isLoading || isGoogleLoading}
+              >
+                {isLoading ? (
+                  <ClipLoader color="#ffffff" size={15} />
+                ) : (
+                  "Sign up"
+                )}
               </button>
               <div className={styles.extraButtons}>
                 <p className={styles.or}>&#x2015; Or &#x2015;</p>
-                <button onClick={GoogleAuth} className={styles.google}>
-                  <p>Sign up with</p>
-                  <img
-                    src={googleIcon}
-                    className={styles.googleImg}
-                    alt="Google"
-                  />
+                <button
+                  onClick={GoogleAuth}
+                  className={styles.google}
+                  disabled={isLoading || isGoogleLoading}
+                >
+                  {isGoogleLoading ? (
+                    <ClipLoader color="#000000" size={15} />
+                  ) : (
+                    <>
+                      <p>Sign up with</p>
+                      <img
+                        src={googleIcon}
+                        className={styles.googleImg}
+                        alt="Google"
+                      />
+                    </>
+                  )}
                 </button>
               </div>
               <div className={styles.disclaimer}>

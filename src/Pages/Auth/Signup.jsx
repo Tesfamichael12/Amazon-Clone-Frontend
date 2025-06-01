@@ -8,7 +8,6 @@ import {
   signInWithPopup,
   updateProfile,
 } from "firebase/auth";
-import swal from "sweetalert";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 import { useCart } from "../../components/DataProvider/DataProvider";
@@ -97,12 +96,6 @@ const Signup = () => {
       })
       .catch((error) => {
         toast.error(error.message);
-        swal({
-          title: "Error!",
-          text: error.message,
-          icon: "error",
-          buttons: "Ok",
-        });
       })
       .finally(() => {
         setIsLoading(false);
@@ -122,12 +115,6 @@ const Signup = () => {
       })
       .catch((error) => {
         toast.error(error.message);
-        swal({
-          title: "Error!",
-          text: error.message,
-          icon: "error",
-          buttons: "Ok",
-        });
       })
       .finally(() => {
         setIsGoogleLoading(false);
@@ -208,7 +195,7 @@ const Signup = () => {
                 disabled={isLoading || isGoogleLoading}
               >
                 {isLoading ? (
-                  <ClipLoader color="#ffffff" size={15} />
+                  <ClipLoader color="#ffffff" size={20} />
                 ) : (
                   "Sign up"
                 )}
@@ -221,7 +208,7 @@ const Signup = () => {
                   disabled={isLoading || isGoogleLoading}
                 >
                   {isGoogleLoading ? (
-                    <ClipLoader color="#000000" size={15} />
+                    <ClipLoader color="#000000" size={20} />
                   ) : (
                     <>
                       <p>Sign up with</p>

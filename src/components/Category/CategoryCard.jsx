@@ -31,6 +31,7 @@ const CategoryCard = ({ title, image }) => {
         height="200"
         loading="lazy"
       />
+      <span className={styles.shopNowLabel}>Shop Now</span>
     </Link>
   );
 };

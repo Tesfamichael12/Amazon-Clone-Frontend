@@ -9,8 +9,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import swal from "sweetalert";
-import { useCart } from "../../components/DataProvider/DataProvider"; // Added useCart
-import { ACTIONS } from "../../Utility/actions"; // Added ACTIONS
+import { toast } from "react-toastify";
+import { useCart } from "../../components/DataProvider/DataProvider";
+import { ACTIONS } from "../../Utility/actions";
 
 // Images
 import logo from "../../assets/Images/logo2.png";
@@ -21,7 +22,7 @@ import googleIcon from "../../assets/Images/google.png";
 const provider = new GoogleAuthProvider();
 
 const Signup = () => {
-  const [, dispatch] = useCart(); // Get dispatch from useCart
+  const { dispatch } = useCart();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -85,11 +86,13 @@ const Signup = () => {
               type: ACTIONS.SET_USER,
               user: userCredential.user,
             });
+            toast.success("Signed up successfully!");
             navigate("/home");
           }
         );
       })
       .catch((error) => {
+        toast.error(error.message);
         swal({
           title: "Error!",
           text: error.message,
@@ -103,13 +106,14 @@ const Signup = () => {
     signInWithPopup(auth, provider)
       .then((userCredential) => {
         dispatch({
-          // Dispatch SET_USER action
           type: ACTIONS.SET_USER,
           user: userCredential.user,
         });
+        toast.success("Signed up successfully with Google!");
         navigate("/home");
       })
       .catch((error) => {
+        toast.error(error.message);
         swal({
           title: "Error!",
           text: error.message,

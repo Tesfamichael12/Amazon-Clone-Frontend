@@ -8,7 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import swal from "sweetalert";
-import { toast } from "react-toastify"; // Added import
+import { toast } from "react-toastify";
 import { useCart } from "../../components/DataProvider/DataProvider";
 import { ACTIONS } from "../../Utility/actions";
 

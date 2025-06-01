@@ -27,6 +27,7 @@ const ProductCard = ({ product }) => {
     <div className={styles.card}>
       <Link to={`/product/${id}`} style={{ textDecoration: "none" }}>
         <div className={styles.imgWrapper}>
+          <div className={styles.imgHoverOverlay}></div>
           <img src={image} alt={title} className={styles.img} />
           <button className={styles.viewBtn}>View product</button>
         </div>

@@ -10,6 +10,13 @@ const Footer = () => {
 
   return (
     <footer className={styles.footerWrapper}>
+      <div className={styles.disclaimerBar}>
+        <span>
+          Disclaimer: This website is an independent project created solely for
+          educational and demonstration purposes. It is not affiliated with,
+          endorsed by, or connected to Amazon in any way.
+        </span>
+      </div>
       <div className={styles.backToTop} onClick={handleBackToTop}>
         Back to top
       </div>

@@ -257,3 +257,18 @@
     font-size: 0.8rem;
   }
 }
+
+.disclaimerBar {
+  width: 100%;
+  background: #23272b;
+  color: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: inherit;
+  padding: 15px;
+  letter-spacing: 0.1px;
+  font-weight: 400;
+}
+.disclaimerBar b {
+  font-weight: 700;
+}

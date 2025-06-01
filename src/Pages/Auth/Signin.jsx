@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import swal from "sweetalert";
 import { toast } from "react-toastify";
-import { ClipLoader } from "react-spinners"; // Added import
+import { ClipLoader } from "react-spinners";
 import { useCart } from "../../components/DataProvider/DataProvider";
 import { ACTIONS } from "../../Utility/actions";
 
@@ -27,8 +27,8 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Added loading state for general button
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false); // Added loading state for Google button
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [bgLoaded, setBgLoaded] = useState(false);
   const navigate = useNavigate();
 
@@ -61,18 +61,18 @@ const Signin = () => {
 
   const LogInUser = async () => {
     if (emailError || passwordError || !email || !password) return;
-    setIsLoading(true); // Set loading true
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         dispatch({
           type: ACTIONS.SET_USER,
           user: userCredential.user,
         });
-        toast.success("Signed in successfully!"); // Added toast
+        toast.success("Signed in successfully!");
         navigate("/home");
       })
       .catch((error) => {
-        toast.error(error.message); // Added toast
+        toast.error(error.message);
         swal({
           title: "Error!",
           text: error.message,
@@ -81,23 +81,23 @@ const Signin = () => {
         });
       })
       .finally(() => {
-        setIsLoading(false); // Set loading false
+        setIsLoading(false);
       });
   };
 
   const GoogleAuth = async () => {
-    setIsGoogleLoading(true); // Set loading true
+    setIsGoogleLoading(true);
     signInWithPopup(auth, provider)
       .then((userCredential) => {
         dispatch({
           type: ACTIONS.SET_USER,
           user: userCredential.user,
         });
-        toast.success("Signed in successfully with Google!"); // Added toast
+        toast.success("Signed in successfully with Google!");
         navigate("/home");
       })
       .catch((error) => {
-        toast.error(error.message); // Added toast
+        toast.error(error.message);
         swal({
           title: "Error!",
           text: error.message,
@@ -106,7 +106,7 @@ const Signin = () => {
         });
       })
       .finally(() => {
-        setIsGoogleLoading(false); // Set loading false
+        setIsGoogleLoading(false);
       });
   };
 

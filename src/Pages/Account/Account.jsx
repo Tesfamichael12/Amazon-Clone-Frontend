@@ -4,18 +4,20 @@ import { useCart } from "../../components/DataProvider/DataProvider";
 import { auth } from "../../Utility/firebase";
 import { ACTIONS } from "../../Utility/actions";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import {
   FaUserCircle,
   FaRegCalendarAlt,
   FaGlobe,
   FaEnvelope,
-  FaUser, // Added FaUser
-  FaMapMarkerAlt, // Added FaMapMarkerAlt
+  FaUser,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 import Layout from "../../components/Layout";
 
 const Account = () => {
   const { user, dispatch } = useCart();
+  const navigate = useNavigate();
 
   const displayName =
     user?.reloadUserInfo?.displayName || user?.displayName || "-";

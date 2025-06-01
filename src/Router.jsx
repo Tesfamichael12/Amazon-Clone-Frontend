@@ -7,6 +7,7 @@ import Orders from "./Pages/Orders/";
 import Payment from "./Pages/Payment/";
 import ProductDetail from "./Pages/ProductDetail";
 import Results from "./Pages/Results/";
+import Account from "./Pages/Account/";
 
 function AppRouter() {
   return (
@@ -22,6 +23,7 @@ function AppRouter() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/category/:categoryName" element={<Results />} />
         <Route path="/results" element={<Results />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
   );

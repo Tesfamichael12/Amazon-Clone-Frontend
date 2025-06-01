@@ -230,7 +230,7 @@ function Header() {
               <div className={styles.dropdownMenu}>
                 {user ? (
                   <>
-                    <Link to="/auth/signin">Your Account</Link>
+                    <Link to="/account">Your Account</Link>
                     <Link to="/orders">Your Orders</Link>
                     <span onClick={handleSignOut} style={{ cursor: "pointer" }}>
                       Sign Out

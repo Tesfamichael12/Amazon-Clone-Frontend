@@ -9,6 +9,7 @@ import usa_flag from "../../assets/Images/usa_flag.png";
 import { useCart } from "../DataProvider/DataProvider";
 import { auth } from "../../Utility/firebase";
 import { ACTIONS } from "../../Utility/actions";
+import { toast } from "react-toastify";
 
 function Header() {
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
@@ -89,6 +90,7 @@ function Header() {
   const handleSignOut = async () => {
     await auth.signOut();
     dispatch({ type: ACTIONS.SET_USER, payload: null });
+    toast.success("Signed out successfully!");
   };
 
   return (
@@ -228,14 +230,7 @@ function Header() {
               <div className={styles.dropdownMenu}>
                 {user ? (
                   <>
-                    <span>
-                      Hello,{" "}
-                      {user.reloadUserInfo?.displayName ||
-                        user.displayName ||
-                        (user.email
-                          ? user.email.split("@")[0]
-                          : user.reloadUserInfo?.email?.split("@")[0])}
-                    </span>
+                    <Link to="/auth/signin">Your Account</Link>
                     <Link to="/orders">Your Orders</Link>
                     <span onClick={handleSignOut} style={{ cursor: "pointer" }}>
                       Sign Out
@@ -243,7 +238,7 @@ function Header() {
                   </>
                 ) : (
                   <>
-                    <Link to="/auth/signin">Your Account</Link>
+                    <Link to="/auth/signin">Sign In</Link>
                     <Link to="/orders">Your Orders</Link>
                   </>
                 )}

@@ -5,6 +5,8 @@ import { useCart } from "./components/DataProvider/DataProvider";
 import { ACTIONS } from "./Utility/actions";
 import "./App.css";
 import AppRouter from "./Router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { dispatch } = useCart();
@@ -14,7 +16,21 @@ function App() {
     });
     return () => unsubscribe();
   }, [dispatch]);
-  return <AppRouter />;
+  return (
+    <>
+      <AppRouter />
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
+  );
 }
 
 export default App;

@@ -1,7 +1,5 @@
 import React, { createContext, useReducer, useContext, useEffect } from "react";
 import { cartReducer, initialCartState } from "../../Utility/reducer.js";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const CartContext = createContext();
 
@@ -31,16 +29,7 @@ export function CartProvider({ children }) {
       value={{ cart: state.cart, dispatch, user: state.user }}
     >
       {children}
-      <ToastContainer
-        position="top-left"
-        autoClose={1500}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      {/* ToastContainer removed: use the one in App.jsx */}
     </CartContext.Provider>
   );
 }

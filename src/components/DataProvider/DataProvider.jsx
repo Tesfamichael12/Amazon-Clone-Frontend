@@ -24,7 +24,9 @@ export function CartProvider({ children }) {
   }, [state.cart]);
 
   return (
-    <CartContext.Provider value={{ cart: state.cart, dispatch }}>
+    <CartContext.Provider
+      value={{ cart: state.cart, dispatch, user: state.user }}
+    >
       {children}
       <ToastContainer
         position="top-left"

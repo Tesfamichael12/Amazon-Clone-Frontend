@@ -3,6 +3,7 @@ import { ACTIONS } from "./actions";
 // Cart reducer for useReducer
 export const initialCartState = {
   cart: [],
+  user: null,
 };
 
 export function cartReducer(state, action) {
@@ -53,6 +54,12 @@ export function cartReducer(state, action) {
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
+      };
+    }
+    case ACTIONS.SET_USER: {
+      return {
+        ...state,
+        user: action.payload,
       };
     }
     default:

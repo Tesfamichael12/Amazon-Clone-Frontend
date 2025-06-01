@@ -62,11 +62,7 @@ const Signin = () => {
     if (emailError || passwordError || !email || !password) return;
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        dispatch({
-          type: ACTIONS.SET_USER,
-          user: userCredential.user,
-        });
+      .then(() => {
         toast.success("Signed in successfully!");
         navigate("/home");
       })
@@ -81,11 +77,7 @@ const Signin = () => {
   const GoogleAuth = async () => {
     setIsGoogleLoading(true);
     signInWithPopup(auth, provider)
-      .then((userCredential) => {
-        dispatch({
-          type: ACTIONS.SET_USER,
-          user: userCredential.user,
-        });
+      .then(() => {
         toast.success("Signed in successfully with Google!");
         navigate("/home");
       })

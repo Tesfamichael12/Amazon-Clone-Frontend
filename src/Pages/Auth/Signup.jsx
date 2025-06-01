@@ -85,10 +85,6 @@ const Signup = () => {
       .then((userCredential) => {
         return updateProfile(userCredential.user, { displayName: name }).then(
           () => {
-            dispatch({
-              type: ACTIONS.SET_USER,
-              user: userCredential.user,
-            });
             toast.success("Signed up successfully!");
             navigate("/home");
           }
@@ -105,11 +101,7 @@ const Signup = () => {
   const GoogleAuth = async () => {
     setIsGoogleLoading(true);
     signInWithPopup(auth, provider)
-      .then((userCredential) => {
-        dispatch({
-          type: ACTIONS.SET_USER,
-          user: userCredential.user,
-        });
+      .then(() => {
         toast.success("Signed up successfully with Google!");
         navigate("/home");
       })

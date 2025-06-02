@@ -1,0 +1,270 @@
+.paymentWrapper {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(20, 40, 80, 0.08);
+  min-height: 300px;
+}
+.paymentWrapper h2 {
+  margin-bottom: 24px;
+  color: #232f3e;
+}
+.paymentSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh;
+  justify-content: center;
+  background: #f7f6f6;
+}
+.paymentBox {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  padding: 30px;
+  max-width: 700px;
+  width: 100%;
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.paymentTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+.paymentOptions {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-bottom: 30px;
+  justify-content: center;
+  width: 100%;
+}
+.radioLabel {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #555;
+}
+.radioLabel input[type="radio"] {
+  accent-color: #f0c14b;
+}
+.totalAmount {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  color: #333;
+}
+.amount {
+  color: #b12704;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 8px;
+}
+.placeOrderBtn {
+  background-color: #f0c14b;
+  color: #111;
+  border: 1px solid;
+  border-color: #a88734 #9c7e31 #846a29;
+  width: auto;
+  min-width: 150px;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: normal;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset;
+  transition: background-color 0.2s;
+  display: block;
+  margin: 0 auto;
+}
+.placeOrderBtn:hover {
+  background-color: #e4b640;
+}
+
+.cardDetailsSection {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.cardDetailsHeading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.cardDisplay {
+  width: 320px;
+  height: 190px;
+  background: linear-gradient(135deg, #f69d3c, #f0772d);
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  position: relative;
+  font-family: "Arial", sans-serif;
+}
+
+.cardChip {
+  width: 45px;
+  height: auto;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+
+.cardNumberDisplay {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-top: 70px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.cardInfoDisplay {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.cardHolderNameDisplay {
+  max-width: 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.formGroup input {
+  padding: 12px;
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  background-color: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07) inset;
+}
+
+.formGroup input:focus {
+  border-color: #e77600;
+  box-shadow: 0 0 3px 2px rgba(228, 121, 17, 0.5);
+  outline: 0;
+}
+
+.formRow {
+  display: flex;
+  gap: 20px;
+}
+
+.formRow .formGroup {
+  flex: 1;
+}
+
+.inputError {
+  border-color: #d8000c !important;
+  background-color: #ffd2d2;
+}
+
+.errorMessage {
+  color: #d8000c;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+.paymentForm {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .paymentBox {
+    padding: 20px;
+    max-width: 90vw;
+  }
+  .paymentOptions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .cardDisplay {
+    width: 280px;
+    height: 170px;
+  }
+  .cardNumberDisplay {
+    font-size: 1.3rem;
+    margin-top: 60px;
+  }
+  .formRow {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .paymentTitle {
+    font-size: 1.3rem;
+  }
+  .cardDisplay {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    min-height: 160px;
+    padding: 15px;
+  }
+  .cardNumberDisplay {
+    font-size: 1.1rem;
+    margin-top: 50px;
+  }
+  .cardChip {
+    width: 40px;
+    top: 15px;
+    left: 15px;
+  }
+  .formGroup input {
+    padding: 10px;
+  }
+  .placeOrderBtn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+}

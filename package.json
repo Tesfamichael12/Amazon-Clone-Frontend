@@ -24,7 +24,8 @@
     "react-router-dom": "^7.6.0",
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "vanilla-tilt": "^1.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

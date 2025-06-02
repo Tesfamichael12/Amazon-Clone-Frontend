@@ -8,6 +8,7 @@ import Payment from "./Pages/Payment/";
 import ProductDetail from "./Pages/ProductDetail";
 import Results from "./Pages/Results/";
 import Account from "./Pages/Account/";
+import Shipping from "./Pages/Shipping/";
 
 function AppRouter() {
   return (
@@ -18,6 +19,7 @@ function AppRouter() {
         <Route path="/auth/signin" element={<Signin />} />
         <Route path="/auth/signup" element={<Signup />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/shipping" element={<Shipping />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/product/:id" element={<ProductDetail />} />

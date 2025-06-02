@@ -4,6 +4,7 @@ import { ACTIONS } from "./actions";
 export const initialCartState = {
   cart: [],
   user: null,
+  shippingDetails: null,
 };
 
 export function cartReducer(state, action) {
@@ -60,6 +61,14 @@ export function cartReducer(state, action) {
       return {
         ...state,
         user: action.payload,
+      };
+    }
+    case ACTIONS.SET_SHIPPING_DETAILS: {
+      // Save to localStorage
+      localStorage.setItem("shippingDetails", JSON.stringify(action.payload));
+      return {
+        ...state,
+        shippingDetails: action.payload,
       };
     }
     default:

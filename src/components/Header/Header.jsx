@@ -18,9 +18,9 @@ function Header() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [headerState, setHeaderState] = useState("visible"); // 'visible', 'hidden', 'topFixed'
+  const [country, setCountry] = useState("");
   const headerRef = useRef(null);
-  const { cart, user, dispatch } = useCart();
-  console.log("Header Rendered - User:", user);
+  const { cart, user, dispatch, shippingDetails } = useCart();
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,6 +53,21 @@ function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, headerState]);
+
+  useEffect(() => {
+    if (!shippingDetails?.country) {
+      fetch("https://ipapi.co/json/")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.country_name) {
+            setCountry(data.country_name);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [shippingDetails]);
+
+  const displayCountry = shippingDetails?.country || country || "Country";
 
   const desktopNavLinks = [
     { name: "All", icon: FaBars },
@@ -117,13 +132,18 @@ function Header() {
             <img src={nav_logo} alt="Amazon Logo" className={styles.logo} />
           </Link>
           {/* DeliverTo for DESKTOP - hidden on mobile via CSS */}
-          <div className={`${styles.deliverTo} ${styles.deliverToDesktop}`}>
-            <FaMapMarkerAlt className={styles.locationIcon} />
-            <div className={styles.deliverTextWrap}>
-              <span className={styles.deliverLabel}>Deliver to</span>
-              <span className={styles.deliverCountry}>Ethiopia</span>
+          <Link
+            to="/shipping"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <div className={`${styles.deliverTo} ${styles.deliverToDesktop}`}>
+              <FaMapMarkerAlt className={styles.locationIcon} />
+              <div className={styles.deliverTextWrap}>
+                <span className={styles.deliverLabel}>Deliver to</span>
+                <span className={styles.deliverCountry}>{displayCountry}</span>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Center: Search Bar */}
@@ -175,7 +195,7 @@ function Header() {
               user ? (
                 <>
                   <span className={styles.smallText}>
-                    Hello,{" "}
+                    Hello,{` `}
                     {user.reloadUserInfo?.displayName ||
                       user.displayName ||
                       (user.email
@@ -202,19 +222,16 @@ function Header() {
             ) : user ? (
               <>
                 <span className={styles.smallText}>
-                  Hello,{" "}
+                  Hello,{` `}
                   {user.reloadUserInfo?.displayName ||
                     user.displayName ||
                     (user.email
                       ? user.email.split("@")[0]
                       : user.reloadUserInfo?.email?.split("@")[0])}
                 </span>
-                <span
-                  className={styles.boldText}
-                  onClick={handleSignOut}
-                  style={{ cursor: "pointer" }}
-                >
-                  Sign Out
+                <span className={styles.boldText}>
+                  Account & Lists{" "}
+                  <FiChevronDown className={styles.chevronIcon} />
                 </span>
               </>
             ) : (
@@ -299,8 +316,15 @@ function Header() {
           ${headerState !== "visible" ? styles.bottomRowHidden : ""} 
         `}
       >
-        <FaMapMarkerAlt className={styles.locationIcon} />
-        <span className={styles.deliverCountry}>Deliver to Ethiopia</span>
+        <Link
+          to="/shipping"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <div className={styles.deliverToMobile}>
+            <FaMapMarkerAlt className={styles.locationIcon} />
+            <span>Deliver to {displayCountry}</span>
+          </div>
+        </Link>
       </div>
 
       {/* Responsive Mobile Menu (triggered by top-left hamburger) */}

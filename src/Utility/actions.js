@@ -1,4 +1,4 @@
-// Cart action types as a single object
+// Action types as a single object
 export const ACTIONS = {
   ADD_TO_CART: "ADD_TO_CART",
   REMOVE_FROM_CART: "REMOVE_FROM_CART",
@@ -6,4 +6,5 @@ export const ACTIONS = {
   INCREASE_CART_ITEM: "INCREASE_CART_ITEM",
   DECREASE_CART_ITEM: "DECREASE_CART_ITEM",
   SET_USER: "SET_USER",
+  SET_SHIPPING_DETAILS: "SET_SHIPPING_DETAILS",
 };

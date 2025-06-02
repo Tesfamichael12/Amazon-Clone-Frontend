@@ -216,11 +216,14 @@
   margin: 6px 0;
 }
 .cartCheckoutBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #ff9900;
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 10px 0;
+  padding: 15px 0;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
@@ -230,6 +233,14 @@
 .cartCheckoutBtn:hover {
   background: #232f3e;
   color: #fff;
+}
+.cartCheckoutBtnInner {
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: transparent;
 }
 .promoSuccessTag {
   color: #0ad67c;

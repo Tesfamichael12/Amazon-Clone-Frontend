@@ -202,7 +202,11 @@ const Cart = () => {
             <span>Total</span>
             <span>${total > 0 ? total.toFixed(2) : "0.00"}</span>
           </div>
-          <button className={styles.cartCheckoutBtn}>Proceed to Payment</button>
+          <Link to="/shipping" className={styles.cartCheckoutBtn}>
+            <button className={styles.cartCheckoutBtnInner}>
+              Proceed to Payment
+            </button>
+          </Link>
         </div>
       </div>
       {/* <Footer /> */}

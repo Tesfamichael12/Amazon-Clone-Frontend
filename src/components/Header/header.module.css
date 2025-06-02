@@ -267,8 +267,8 @@ html {
 }
 .cartCount {
   position: absolute;
-  top: -15px;
-  left: 22px;
+  top: -10px;
+  left: 18px;
   background: none;
   color: #ff9900;
   font-size: 1rem;

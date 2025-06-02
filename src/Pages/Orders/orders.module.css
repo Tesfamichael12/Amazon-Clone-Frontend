@@ -11,3 +11,16 @@
   margin-bottom: 24px;
   color: #232f3e;
 }
+
+.orderNowGifWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orderNowGif {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  border-radius: 8px;
+}
